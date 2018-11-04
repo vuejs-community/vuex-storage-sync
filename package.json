@@ -7,26 +7,34 @@
     "vuex-plugin"
   ],
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Ed Nikolenko <4426698+ednikolenko@users.noreply.github.com>",
-  "main": "dist/index.js",
+  "main" : "dist/index.cjs.js",
+  "module" : "dist/index.esm.js",
   "files": [
-    "dist/index.js"
+    "dist/index.cjs.js",
+    "dist/index.esm.js"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ednikolenko/vuex-storage-sync.git"
   },
   "scripts": {
-    "build": "babel src -o dist/index.js"
+    "build" : "npm run build:esm && npm run build:cjs",
+    "build:cjs" : "rollup --config rollup.config.js --format cjs --file dist/index.cjs.js",
+    "build:esm" : "rollup --config rollup.config.js --format esm --file dist/index.esm.js",
+    "lint" : "tslint -p tsconfig.json -c tslint.json"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-preset-env": "^1.6.1"
+    "rollup" : "^0.67.0",
+    "rollup-plugin-json" : "^3.1.0",
+    "rollup-plugin-typescript" : "^1.0.0",
+    "tslint" : "^5.11.0",
+    "typescript" : "^3.1.6",
+    "vuex": "^3.0.1"
   },
   "peerDependencies": {
     "vue": "^2.0.0",
-    "vuex": "^2.0.0 || ^3.0.0"
+    "vuex" : "^3.0.0"
   }
 }
