@@ -1,5 +1,7 @@
 import type { MutationPayload, Store } from 'vuex';
 
+import { deepMerge } from './utils/deep-merge';
+
 export const DEFAULT_MUTATION_KEY = 'VSS_MUTATION';
 export const DEFAULT_SNAPSHOT_KEY = 'VSS_SNAPSHOT';
 export const UNIQUE_ID = `${Date.now()}-${Math.random()}`;
@@ -37,7 +39,7 @@ export default ({
   // Replace state from last snapshot
   const snapshot: State | null = JSON.parse(window.localStorage.getItem(snapshotKey));
   if (snapshot !== null) {
-    store.replaceState(snapshot);
+    store.replaceState(deepMerge(store.state, snapshot));
   }
 
   store.subscribe((mutation: MutationPayload, state: State) => {
