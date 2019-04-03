@@ -26,7 +26,11 @@ export function createStore () {
       createStorageSync(),
       // or with params
       createStorageSync({
+        // Allowed to snapshoting modules
+        modules: [],
         mutationKey: 'MY_MUTATION_KEY',
+        // Allowed to synchronize mutations
+        mutations: [],
         snapshotKey: 'MY_SNAPSHOT_KEY'
       })
     ]

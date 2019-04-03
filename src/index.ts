@@ -5,6 +5,7 @@ export const DEFAULT_SNAPSHOT_KEY = 'VSS_SNAPSHOT';
 export const UNIQUE_ID = `${Date.now()}-${Math.random()}`;
 
 export type CreatePluginParams = {
+  modules: string[];
   mutationKey: string;
   mutations: string[];
   snapshotKey: string;
@@ -17,7 +18,11 @@ export type Message = {
 
 export type State = Record<string, unknown>;
 
+const transformState = (oldState: State, modules: string[]): State => modules
+  .reduce((newState, module) => ({ ...newState, [module]: oldState[module] }), {});
+
 export default ({
+  modules = [],
   mutationKey = DEFAULT_MUTATION_KEY,
   mutations = [],
   snapshotKey = DEFAULT_SNAPSHOT_KEY
@@ -46,7 +51,7 @@ export default ({
     window.localStorage.setItem(mutationKey, JSON.stringify(mutation));
     window.localStorage.removeItem(mutationKey);
 
-    window.localStorage.setItem(snapshotKey, JSON.stringify(state));
+    window.localStorage.setItem(snapshotKey, JSON.stringify(transformState(state, modules)));
   });
 
   window.addEventListener('storage', (event: StorageEvent) => {
