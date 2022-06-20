@@ -28,11 +28,12 @@
   },
   "devDependencies": {
     "@rollup/plugin-json": "^4.0.3",
-    "@wessberg/rollup-plugin-ts": "^1.2.24",
-    "rollup": "^2.8.2",
+    "@wessberg/rollup-plugin-ts": "^2.0.4",
+    "rollup": "^2.7.6",
     "tslint": "^6.1.2",
-    "typescript": "^3.8.3",
-    "vuex": "^3.0.1"
+    "typescript": "^4.0.2",
+    "vue": "^2.6.11",
+    "vuex": "^3.6.2"
   },
   "peerDependencies": {
     "vue": "^2.0.0",
