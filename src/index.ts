@@ -1,6 +1,18 @@
-import type { MutationPayload, Store } from 'vuex';
+import { deepMerge } from './utils/deep-merge.ts';
 
-import { deepMerge } from './utils/deep-merge';
+type MutationPayload = {
+  payload: unknown;
+  type: string;
+};
+
+
+// eslint-disable-next-line typescript/no-unused-vars
+type Store<T> = {
+  commit: Function;
+  replaceState: Function;
+  state: State;
+  subscribe: Function;
+};
 
 export const DEFAULT_MUTATION_KEY = 'VSS_MUTATION';
 export const DEFAULT_SNAPSHOT_KEY = 'VSS_SNAPSHOT';
